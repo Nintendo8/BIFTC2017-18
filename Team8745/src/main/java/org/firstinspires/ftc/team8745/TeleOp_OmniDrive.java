@@ -32,21 +32,30 @@ public class TeleOp_OmniDrive extends OpMode{
         float leftStickY = gamepad1.left_stick_y;
         boolean dpadUp = gamepad2.dpad_up;
         boolean rightBumper = gamepad1.right_bumper;
-        float leftStickX = gamepad1.left_stick_x;
+        float leftStickX = -gamepad1.left_stick_x;
         float rightStickX = gamepad1.right_stick_x;
+
+        if (Math.abs(leftStickX) < .3){
+            leftStickX = 0;
+        } else if (Math.abs(leftStickY) < .3){
+            leftStickY = 0;
+        }
 
         float BD = Range.clip(.5f*(leftStickX+leftStickY), -1, 1);
         float AC = Range.clip(.5f*(leftStickY-leftStickX), -1, 1);
 
+        if (Math.abs(rightStickX) > .3) {
+            robot.A.setPower(rightStickX);
+            robot.D.setPower(rightStickX);
 
-        float negLeftStickX = leftStickX*(0-1);
-        float negRightStickX = rightStickX*(0-1);
-
-
+            robot.C.setPower(-rightStickX);
+            robot.B.setPower(-rightStickX);
+            telemetry.addData("D Power", robot.D.getPower());
+        } else {
             robot.D.setPower(BD);
             robot.B.setPower(BD);
             robot.A.setPower(AC);
             robot.C.setPower(AC);
-
+        }
     }
 }
