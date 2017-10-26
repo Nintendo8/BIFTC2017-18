@@ -26,11 +26,15 @@ public class OmniDriveRobot {
     public DcMotor C;
     public DcMotor D;
 
+    public DcMotor lift;
+
+    public Servo servoL;
+    public Servo servoR;
+
     public void init(HardwareMap hardwareMap) {
 
         //Front Motors
         B = hardwareMap.dcMotor.get("B");
-
         D = hardwareMap.dcMotor.get("D");
 
         //Back Motors
@@ -41,6 +45,28 @@ public class OmniDriveRobot {
         B.setDirection(DcMotorSimple.Direction.REVERSE);
         C.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        lift = hardwareMap.dcMotor.get("Lift");
+
+        servoL = hardwareMap.servo.get("Left Servo");
+        servoR = hardwareMap.servo.get("Right Servo");
+
+    }
+
+    public void driveStraight (double speed) {
+     A.setPower(speed);
+     D.setPower(speed);
+
+     B.setPower(speed);
+     C.setPower(speed);
+
+    }
+
+    public void driveStrafe (double speed) {
+        A.setPower(speed);
+        D.setPower(-speed);
+
+        B.setPower(speed);
+        C.setPower(-speed);
 
     }
 }

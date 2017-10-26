@@ -12,7 +12,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  */
 
 
-@Autonomous(name="Pushbot: Auto Drive By Time", group="Pushbot")
+@Autonomous(name="Autonomous Park in SafeZone")
 
 public class AutonomousByTime extends LinearOpMode {
 
@@ -22,8 +22,8 @@ public class AutonomousByTime extends LinearOpMode {
     private ElapsedTime elapsedTime = new ElapsedTime();
 
 
-    static final double     FORWARD_SPEED = 0.6;
-    static final double     REVERSE_SPEED = -0.6;
+    static final double     FORWARD_SPEED = -0.6;
+    static final double     REVERSE_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
 
     @Override
@@ -32,6 +32,8 @@ public class AutonomousByTime extends LinearOpMode {
         /*
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
+
+
          */
         robot.init(hardwareMap);
 
@@ -48,11 +50,11 @@ public class AutonomousByTime extends LinearOpMode {
         robot.A.setPower(FORWARD_SPEED);
         robot.D.setPower(FORWARD_SPEED);
 
-        robot.B.setPower(REVERSE_SPEED);
-        robot.C.setPower(REVERSE_SPEED);
+        robot.B.setPower(FORWARD_SPEED);
+        robot.C.setPower(FORWARD_SPEED);
 
         elapsedTime.reset();
-        while (opModeIsActive() && (elapsedTime.seconds() < 3.0)) {
+        while (opModeIsActive() && (elapsedTime.seconds() < 1.5)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
             telemetry.update();
         }
