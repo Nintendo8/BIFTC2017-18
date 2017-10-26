@@ -31,6 +31,8 @@ public class OmniDriveRobot {
     public Servo servoL;
     public Servo servoR;
 
+    public Servo jewelServo;
+
     public void init(HardwareMap hardwareMap) {
 
         //Front Motors
@@ -49,6 +51,8 @@ public class OmniDriveRobot {
 
         servoL = hardwareMap.servo.get("Left Servo");
         servoR = hardwareMap.servo.get("Right Servo");
+
+        jewelServo = hardwareMap.servo.get("Jewel Servo");
 
     }
 

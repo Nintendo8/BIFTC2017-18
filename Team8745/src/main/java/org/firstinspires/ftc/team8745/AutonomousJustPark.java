@@ -14,7 +14,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
 @Autonomous(name="Autonomous Park in SafeZone")
 
-public class AutonomousByTime extends LinearOpMode {
+public class AutonomousJustPark extends LinearOpMode {
 
 
     /* Declare OpMode members. */

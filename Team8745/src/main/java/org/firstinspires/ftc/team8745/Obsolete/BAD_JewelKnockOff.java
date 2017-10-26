@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team8745;
+package org.firstinspires.ftc.team8745.Obsolete;
 
 //DISABLED!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  */
 @Disabled
 @TeleOp(name = "TELEOP Color Sensor Test")
-public class Autonomous_JewelKnockOff extends OpMode {
+public class BAD_JewelKnockOff extends OpMode {
 
     private HDrive_BadRobot HDriveBadRobot = new HDrive_BadRobot();
 
