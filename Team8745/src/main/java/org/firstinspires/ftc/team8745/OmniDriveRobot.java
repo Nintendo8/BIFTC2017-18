@@ -56,6 +56,9 @@ public class OmniDriveRobot {
         jewelServo = hardwareMap.servo.get("Jewel Servo");
         jewelSensor = hardwareMap.colorSensor.get("Jewel Sensor");
 
+        servoL.setPosition(0);
+        servoR.setPosition(0);
+
     }
 
     public void driveStraight (double speed) {
@@ -74,6 +77,9 @@ public class OmniDriveRobot {
         B.setPower(speed);
         C.setPower(-speed);
 
+    }
+
+    public void  doNothing (){
     }
 }
 
