@@ -18,15 +18,15 @@ public class BlueTeam_AutonomousJewelAndPark extends LinearOpMode {
     private ElapsedTime elapsedTime = new ElapsedTime();
 
 
-    static final double     FORWARD_SPEED = -0.6;
-    static final double     BACKWARD_SPEED = 0.6;
+    static final double     kFORWARD_SPEED = -0.6;
+    static final double     kBACKWARD_SPEED = 0.6;
 
-    static final double     RIGHT_SPEED = -0.6;
-    static final double     LEFT_SPEED = 0.6;
+    static final double     kRIGHT_SPEED = -0.6;
+    static final double     kLEFT_SPEED = 0.6;
 
-    static final double     TURN_SPEED    = 0.5;
+    static final double     kTURN_SPEED = 0.5;
 
-    double timeToDrive = 1.5;
+    static final double     kTimeToDrive = 1.5;
 
     //boolean canPark = false;
 
@@ -53,11 +53,11 @@ public class BlueTeam_AutonomousJewelAndPark extends LinearOpMode {
 
         if (robot.jewelSensor.blue() > robot.jewelSensor.red()){
             while (opModeIsActive() && (elapsedTime.seconds() < .3)) {
-                robot.A.setPower(FORWARD_SPEED);
-                robot.D.setPower(FORWARD_SPEED);
+                robot.A.setPower(kFORWARD_SPEED);
+                robot.D.setPower(kFORWARD_SPEED);
 
-                robot.B.setPower(FORWARD_SPEED);
-                robot.C.setPower(FORWARD_SPEED);
+                robot.B.setPower(kFORWARD_SPEED);
+                robot.C.setPower(kFORWARD_SPEED);
             }
             robot.A.setPower(0);
             robot.D.setPower(0);
@@ -68,11 +68,11 @@ public class BlueTeam_AutonomousJewelAndPark extends LinearOpMode {
 
         if (robot.jewelSensor.red() > robot.jewelSensor.blue()){
             while (opModeIsActive() && (elapsedTime.seconds() < .3)) {
-                robot.A.setPower(BACKWARD_SPEED);
-                robot.D.setPower(BACKWARD_SPEED);
+                robot.A.setPower(kBACKWARD_SPEED);
+                robot.D.setPower(kBACKWARD_SPEED);
 
-                robot.B.setPower(BACKWARD_SPEED);
-                robot.C.setPower(BACKWARD_SPEED);
+                robot.B.setPower(kBACKWARD_SPEED);
+                robot.C.setPower(kBACKWARD_SPEED);
             }
             robot.A.setPower(0);
             robot.D.setPower(0);
@@ -90,11 +90,11 @@ public class BlueTeam_AutonomousJewelAndPark extends LinearOpMode {
         }
 
         // Drive forward for 1.5 seconds
-        robot.A.setPower(FORWARD_SPEED);
-        robot.D.setPower(FORWARD_SPEED);
+        robot.A.setPower(kFORWARD_SPEED);
+        robot.D.setPower(kFORWARD_SPEED);
 
-        robot.B.setPower(FORWARD_SPEED);
-        robot.C.setPower(FORWARD_SPEED);
+        robot.B.setPower(kFORWARD_SPEED);
+        robot.C.setPower(kFORWARD_SPEED);
 
         elapsedTime.reset();
         //Changing value of the number elapsedTime must be greater than changes how long the robot drives forward.

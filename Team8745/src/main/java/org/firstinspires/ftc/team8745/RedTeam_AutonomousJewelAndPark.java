@@ -17,18 +17,28 @@ public class RedTeam_AutonomousJewelAndPark extends LinearOpMode {
     OmniDriveRobot robot = new OmniDriveRobot();
     private ElapsedTime elapsedTime = new ElapsedTime();
 
+    //Speed to drive the robot forward at.
+    static final double     kFORWARD_SPEED = -0.6;
 
-    static final double     FORWARD_SPEED  = -0.6;
-    static final double     BACKWARD_SPEED = 0.6;
+    //Speed to drive the robot backward at.
+    static final double     kBACKWARD_SPEED = 0.6;
 
-    static final double     RIGHT_SPEED    = -0.6;
-    static final double     LEFT_SPEED     = 0.6;
+    //Right strafing speed
+    static final double     kRIGHT_SPEED = -0.6;
 
-    static final double     TURN_SPEED     = 0.5;
+    //Right strafing speed
+    static final double     kLEFT_SPEED = 0.6;
 
-    static final double     JEWEL_TARGET   = 0.5;
+    //Variable for if the robot turns, determines the speed it turns at.
+    static final double     kTURN_SPEED = 0.5;
 
-    double timeToDrive = 1.5;
+    //Changes where the jewel servo moves to, scale of 0.0 to 1.0
+    static final double     kJEWEL_TARGET = 0.5;
+
+    //Changing this determines how long it drives forwards to park, in seconds.
+    static final double     kTimeToDrive = 1.5;
+    //Changing this determines how long it drives to knock off the jewel, in seconds.
+    static final double     kTimeToKnockOff = 0.9;
 
     //boolean canPark = false;
 
@@ -51,14 +61,15 @@ public class RedTeam_AutonomousJewelAndPark extends LinearOpMode {
         waitForStart();
 
         // Lowers jewelServo
-        robot.jewelServo.setPosition(JEWEL_TARGET);
+        robot.jewelServo.setPosition(kJEWEL_TARGET);
 
-        while (robot.jewelServo.getPosition()!=JEWEL_TARGET) {
+        while (robot.jewelServo.getPosition()!= kJEWEL_TARGET) {
+            robot.doNothing();
         }
 
         if (robot.jewelSensor.red() > robot.jewelSensor.blue()){
-            while (opModeIsActive() && (elapsedTime.seconds() < .3)) {
-                robot.driveStrafe(0.6);
+            while (opModeIsActive() && (elapsedTime.seconds() < kTimeToKnockOff)) {
+                robot.driveStrafe(1.0);
             }
             robot.A.setPower(0);
             robot.D.setPower(0);
@@ -68,8 +79,8 @@ public class RedTeam_AutonomousJewelAndPark extends LinearOpMode {
         }
 
         if (robot.jewelSensor.blue() > robot.jewelSensor.red()){
-            while (opModeIsActive() && (elapsedTime.seconds() < .3)) {
-                robot.driveStrafe(-0.6);
+            while (opModeIsActive() && (elapsedTime.seconds() < kTimeToKnockOff)) {
+                robot.driveStrafe(-1.0);
             }
             robot.A.setPower(0);
             robot.D.setPower(0);
@@ -86,12 +97,12 @@ public class RedTeam_AutonomousJewelAndPark extends LinearOpMode {
 
         }
 
-        // Drive forward for 1.5 seconds
-        robot.driveStraight(FORWARD_SPEED);
+        // Drive to the right.
+        robot.driveStrafe(kRIGHT_SPEED);
 
         elapsedTime.reset();
         //Changing value of the number elapsedTime must be greater than changes how long the robot drives forward.
-        while (opModeIsActive() && (elapsedTime.seconds() < 1.5)) {
+        while (opModeIsActive() && (elapsedTime.seconds() < kTimeToDrive)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
             telemetry.update();
         }

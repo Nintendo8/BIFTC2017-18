@@ -13,6 +13,19 @@ package org.firstinspires.ftc.team8745;
 public class GlyphLifterTeleOp extends OpMode {
 
     private OmniDriveRobot robot = new OmniDriveRobot();
+    final double kServoRightClosed = 0.4;
+    final double kServoLeftClosed = 0.6;
+
+    final double kServoRightOpen = 0.7;
+    final double kServoLeftOpen = 0.3;
+
+
+    final double kLeftStickXDeadzone = 0.2;
+    final double kLeftStickYDeadzone = 0.2;
+
+    final double kLeftStick2Deadzone = 0.1;
+
+    final double kRightStickXDeadzone = 0.3;
 
     @Override
     public void init() {
@@ -22,7 +35,6 @@ public class GlyphLifterTeleOp extends OpMode {
 
     @Override
     public void loop() {
-
 
         //Gamepad 2
         boolean gamepadA = gamepad2.a;
@@ -45,31 +57,33 @@ public class GlyphLifterTeleOp extends OpMode {
         if (gamepadA && gamepadB) {
             robot.doNothing();
         } else if(gamepadA){
-            robot.servoL.setPosition(0.4);
-            robot.servoR.setPosition(0.4);
+            robot.servoL.setPosition(kServoLeftClosed);
+            robot.servoR.setPosition(kServoRightClosed);
         } else if(gamepadB){
-            robot.servoL.setPosition(0.0);
-            robot.servoR.setPosition(0.0);
+            robot.servoL.setPosition(kServoLeftOpen);
+            robot.servoR.setPosition(kServoRightOpen);
         }
 
-        robot.lift.setPower(leftStick2/2);
-
-        if (Math.abs(leftStickX) < .2){
+        if (Math.abs(leftStick2)>kLeftStick2Deadzone){
+            robot.lift.setPower(leftStick2/2);
+        } else {
+            robot.lift.setPower(0.0);
+        }
+        if (Math.abs(leftStickX) < kLeftStickXDeadzone){
             leftStickX = 0;
-        } else if (Math.abs(leftStickY) < .2){
+        } else if (Math.abs(leftStickY) < kLeftStickYDeadzone){
             leftStickY = 0;
         }
 
         float BD = Range.clip(.5f*(leftStickX+leftStickY), -1, 1);
         float AC = Range.clip(.5f*(leftStickY-leftStickX), -1, 1);
 
-        if (Math.abs(rightStickX) > .3) {
+        if (Math.abs(rightStickX) > kRightStickXDeadzone) {
             robot.A.setPower(rightStickX);
             robot.D.setPower(rightStickX);
 
             robot.C.setPower(-rightStickX);
             robot.B.setPower(-rightStickX);
-            telemetry.addData("D Power", robot.D.getPower());
         } else {
             robot.D.setPower(BD);
             robot.B.setPower(BD);
