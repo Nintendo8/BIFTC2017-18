@@ -1,20 +1,16 @@
 package org.firstinspires.ftc.team8745;
 
         import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
         import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
         import com.qualcomm.robotcore.util.ElapsedTime;
-
-        import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
-
 
 
 /**
  * Created by rose on 10/25/17.
  */
-@Autonomous(name="Jewel and Park")
+@Autonomous(name="Jewel and Park Blue")
 
-public class AutonomousJewelAndPark extends LinearOpMode {
+public class BlueTeam_AutonomousJewelAndPark extends LinearOpMode {
 
 
     /* Declare OpMode members. */
@@ -23,8 +19,14 @@ public class AutonomousJewelAndPark extends LinearOpMode {
 
 
     static final double     FORWARD_SPEED = -0.6;
-    static final double     REVERSE_SPEED = 0.6;
+    static final double     BACKWARD_SPEED = 0.6;
+
+    static final double     RIGHT_SPEED = -0.6;
+    static final double     LEFT_SPEED = 0.6;
+
     static final double     TURN_SPEED    = 0.5;
+
+    double timeToDrive = 1.5;
 
     //boolean canPark = false;
 
@@ -48,6 +50,36 @@ public class AutonomousJewelAndPark extends LinearOpMode {
 
         // Lowers jewelServo
         robot.jewelServo.setPosition(0.5);
+
+        if (robot.jewelSensor.blue() > robot.jewelSensor.red()){
+            while (opModeIsActive() && (elapsedTime.seconds() < .3)) {
+                robot.A.setPower(FORWARD_SPEED);
+                robot.D.setPower(FORWARD_SPEED);
+
+                robot.B.setPower(FORWARD_SPEED);
+                robot.C.setPower(FORWARD_SPEED);
+            }
+            robot.A.setPower(0);
+            robot.D.setPower(0);
+
+            robot.B.setPower(0);
+            robot.C.setPower(0);
+        }
+
+        if (robot.jewelSensor.red() > robot.jewelSensor.blue()){
+            while (opModeIsActive() && (elapsedTime.seconds() < .3)) {
+                robot.A.setPower(BACKWARD_SPEED);
+                robot.D.setPower(BACKWARD_SPEED);
+
+                robot.B.setPower(BACKWARD_SPEED);
+                robot.C.setPower(BACKWARD_SPEED);
+            }
+            robot.A.setPower(0);
+            robot.D.setPower(0);
+
+            robot.B.setPower(0);
+            robot.C.setPower(0);
+        }
 
         //When done
         robot.jewelServo.setPosition(0.0);

@@ -14,8 +14,7 @@ package org.firstinspires.ftc.team8745;
 
 public class OmniDriveRobot {
 
-    public ColorSensor colorSensor;
-    public Servo jewelKnockOff;
+
   /*public DcMotor left_b;
     public DcMotor left_f;
     public DcMotor right_b;
@@ -32,6 +31,8 @@ public class OmniDriveRobot {
     public Servo servoR;
 
     public Servo jewelServo;
+
+    public ColorSensor jewelSensor;
 
     public void init(HardwareMap hardwareMap) {
 
@@ -53,6 +54,7 @@ public class OmniDriveRobot {
         servoR = hardwareMap.servo.get("Right Servo");
 
         jewelServo = hardwareMap.servo.get("Jewel Servo");
+        jewelSensor = hardwareMap.colorSensor.get("Jewel Sensor");
 
     }
 
