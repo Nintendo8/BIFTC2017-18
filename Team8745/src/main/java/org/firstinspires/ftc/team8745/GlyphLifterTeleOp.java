@@ -13,28 +13,36 @@ package org.firstinspires.ftc.team8745;
 public class GlyphLifterTeleOp extends OpMode {
 
     private OmniDriveRobot robot = new OmniDriveRobot();
-    final double kServoRightClosed = 0.4;
-    final double kServoLeftClosed = 0.6;
 
-    final double kServoRightOpen = 0.7;
-    final double kServoLeftOpen = 0.3;
+    final double kServoRightOpen = 0.0;
+    final double kServoLeftOpen = 1.0;
+
+    final double kServoRightClosed = 1.0;
+    final double kServoLeftClosed = 0.0;
 
 
-    final double kLeftStickXDeadzone = 0.2;
-    final double kLeftStickYDeadzone = 0.2;
+    final double kLeftStickXDeadzone = 0.1;
+    final double kLeftStickYDeadzone = 0.1;
 
     final double kLeftStick2Deadzone = 0.1;
 
-    final double kRightStickXDeadzone = 0.3;
+    final double kSpinDeadzone = 0.1;
 
     @Override
     public void init() {
         robot.init(hardwareMap);
 
+        robot.servoL.setPosition(kServoLeftOpen);
+        robot.servoR.setPosition(kServoRightOpen);
+        robot.lift.setTargetPosition(0);
+
     }
 
     @Override
     public void loop() {
+
+        telemetry.addData("left servo",robot.servoL.getPosition());
+        telemetry.addData("right servo",robot.servoR.getPosition());
 
         //Gamepad 2
         boolean gamepadA = gamepad2.a;
@@ -78,7 +86,7 @@ public class GlyphLifterTeleOp extends OpMode {
         float BD = Range.clip(.5f*(leftStickX+leftStickY), -1, 1);
         float AC = Range.clip(.5f*(leftStickY-leftStickX), -1, 1);
 
-        if (Math.abs(rightStickX) > kRightStickXDeadzone) {
+        if (Math.abs(rightStickX) > kSpinDeadzone) {
             robot.A.setPower(rightStickX);
             robot.D.setPower(rightStickX);
 

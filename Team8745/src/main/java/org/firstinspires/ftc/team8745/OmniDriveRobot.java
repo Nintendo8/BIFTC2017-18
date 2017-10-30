@@ -36,6 +36,10 @@ public class OmniDriveRobot {
 
     public void init(HardwareMap hardwareMap) {
 
+        /*lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
+
         //Front Motors
         B = hardwareMap.dcMotor.get("B");
         D = hardwareMap.dcMotor.get("D");
@@ -56,8 +60,6 @@ public class OmniDriveRobot {
         //jewelServo = hardwareMap.servo.get("Jewel Servo");
         //jewelSensor = hardwareMap.colorSensor.get("Jewel Sensor");
 
-        servoL.setPosition(0.0);
-        servoR.setPosition(0.0);
 
     }
 
