@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Created by rose on 10/30/17.
  */
 
-@Autonomous(name="Jewel and Park Blue")
+@Autonomous(name="Only Park Blue")
 
 public class OnlyParkBlue extends LinearOpMode {
 
@@ -53,12 +53,8 @@ public class OnlyParkBlue extends LinearOpMode {
         waitForStart();
 
 
-        // Drive forward for 1.5 seconds
-        robot.A.setPower(kFORWARD_SPEED);
-        robot.D.setPower(kFORWARD_SPEED);
-
-        robot.B.setPower(kFORWARD_SPEED);
-        robot.C.setPower(kFORWARD_SPEED);
+        // Drive left for 1.5 seconds
+        robot.driveStrafe(kLEFT_SPEED);
 
         elapsedTime.reset();
         //Changing value of the number elapsedTime must be greater than changes how long the robot drives forward.

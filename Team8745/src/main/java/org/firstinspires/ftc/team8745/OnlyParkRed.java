@@ -12,7 +12,7 @@ package org.firstinspires.ftc.team8745;
  * Created by rose on 10/30/17.
  */
 
-@Autonomous(name="Jewel and Park Blue")
+@Autonomous(name="Only Park Red")
 
 public class OnlyParkRed extends LinearOpMode {
 
@@ -53,12 +53,8 @@ public class OnlyParkRed extends LinearOpMode {
         waitForStart();
 
 
-        // Drive forward for 1.5 seconds
-        robot.A.setPower(kFORWARD_SPEED);
-        robot.D.setPower(kFORWARD_SPEED);
-
-        robot.B.setPower(kFORWARD_SPEED);
-        robot.C.setPower(kFORWARD_SPEED);
+        // Drive right for 1.5 seconds
+        robot.driveStrafe(kRIGHT_SPEED);
 
         elapsedTime.reset();
         //Changing value of the number elapsedTime must be greater than changes how long the robot drives forward.

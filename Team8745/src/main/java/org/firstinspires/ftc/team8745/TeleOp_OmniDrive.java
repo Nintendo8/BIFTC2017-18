@@ -10,7 +10,7 @@ package org.firstinspires.ftc.team8745;
 /**
  * Created by rose on 10/15/17.
  */
-@TeleOp(name = "Omni Drive Test Oct. 7")
+@TeleOp(name = "Old Omni Test")
 
 public class TeleOp_OmniDrive extends OpMode{
 

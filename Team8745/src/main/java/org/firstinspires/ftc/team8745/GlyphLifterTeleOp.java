@@ -21,8 +21,8 @@ public class GlyphLifterTeleOp extends OpMode {
     final double kServoLeftClosed = 0.0;
 
 
-    final double kLeftStickXDeadzone = 0.1;
-    final double kLeftStickYDeadzone = 0.1;
+    final double kLeftStickXDeadzone = 0.0;
+    final double kLeftStickYDeadzone = 0.0;
 
     final double kLeftStick2Deadzone = 0.1;
 
@@ -83,15 +83,15 @@ public class GlyphLifterTeleOp extends OpMode {
             leftStickY = 0;
         }
 
-        float BD = Range.clip(.5f*(leftStickX+leftStickY), -1, 1);
-        float AC = Range.clip(.5f*(leftStickY-leftStickX), -1, 1);
+        float BD = Range.clip(.5f*(leftStickX-leftStickY), -1, 1); //leftStickX+leftStickY
+        float AC = Range.clip(.5f*(leftStickY+leftStickX), -1, 1); //leftStickY-leftStickX
 
         if (Math.abs(rightStickX) > kSpinDeadzone) {
-            robot.A.setPower(rightStickX);
-            robot.D.setPower(rightStickX);
+            robot.A.setPower(-rightStickX);
+            robot.D.setPower(-rightStickX);
 
-            robot.C.setPower(-rightStickX);
-            robot.B.setPower(-rightStickX);
+            robot.C.setPower(rightStickX);
+            robot.B.setPower(rightStickX);
         } else {
             robot.D.setPower(BD);
             robot.B.setPower(BD);
