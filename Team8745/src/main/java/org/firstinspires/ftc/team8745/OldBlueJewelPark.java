@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.team8745;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -8,9 +9,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Created by rose on 10/25/17.
  */
+@Disabled
 @Autonomous(name="Jewel and Park Blue")
 
-public class BlueTeam_AutonomousJewelAndPark extends LinearOpMode {
+public class OldBlueJewelPark extends LinearOpMode {
 
 
     /* Declare OpMode members. */
