@@ -1,5 +1,6 @@
-package org.firstinspires.ftc.team8745;
+package org.firstinspires.ftc.team8745.Obsolete;
 
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
         import com.qualcomm.robotcore.eventloop.opmode.OpMode;
         import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
         import com.qualcomm.robotcore.hardware.DcMotor;
@@ -7,12 +8,15 @@ package org.firstinspires.ftc.team8745;
         import com.qualcomm.robotcore.hardware.HardwareMap;
         import com.qualcomm.robotcore.util.Range;
 
+        import org.firstinspires.ftc.team8745.OmniDriveRobot;
+
 /**
  * Created by rose on 10/15/17.
  */
-@TeleOp(name = "Old Omni Test")
+@Disabled
+@TeleOp(name = "DisabledOmniTest")
 
-public class TeleOp_OmniDrive extends OpMode{
+public class TeleOp_OmniDriveNoLift extends OpMode{
 
 
     private OmniDriveRobot robot = new OmniDriveRobot();

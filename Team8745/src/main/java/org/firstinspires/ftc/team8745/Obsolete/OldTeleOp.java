@@ -1,20 +1,21 @@
-package org.firstinspires.ftc.team8745;
+package org.firstinspires.ftc.team8745.Obsolete;
 
         import com.qualcomm.robotcore.eventloop.opmode.Disabled;
         import com.qualcomm.robotcore.eventloop.opmode.OpMode;
         import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+        import com.qualcomm.robotcore.hardware.DcMotor;
         import com.qualcomm.robotcore.util.Range;
 
         import org.firstinspires.ftc.team8745.OmniDriveRobot;
 
 /**
- * Created by rose on 10/25/17.
+ * Created by rose on 10/30/17.
  */
 
-//@Disabled
-@TeleOp(name = "Glyph Lifter TeleOp Test")
+@Disabled
+@TeleOp(name = "OLD MAIN TeleOp")
 
-public class GlyphLifterTeleOp extends OpMode {
+public class OldTeleOp extends OpMode {
 
     private OmniDriveRobot robot = new OmniDriveRobot();
 
@@ -38,8 +39,7 @@ public class GlyphLifterTeleOp extends OpMode {
 
         robot.servoL.setPosition(kServoLeftOpen);
         robot.servoR.setPosition(kServoRightOpen);
-        robot.lift.setTargetPosition(0);
-
+        robot.lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     @Override
@@ -82,6 +82,7 @@ public class GlyphLifterTeleOp extends OpMode {
         } else {
             robot.lift.setPower(0.0);
         }
+
         if (Math.abs(leftStickX) < kLeftStickXDeadzone){
             leftStickX = 0;
         } else if (Math.abs(leftStickY) < kLeftStickYDeadzone){

@@ -1,20 +1,20 @@
-package org.firstinspires.ftc.team8745;
+package org.firstinspires.ftc.team8745.Obsolete;
 
-        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-        import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-        import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
-        import org.firstinspires.ftc.team8745.OmniDriveRobot;
+import org.firstinspires.ftc.team8745.OmniDriveRobot;
+
 
 /**
- * Created by rose on 10/25/17.
+ * Created by rose on 11/3/17.
  */
 
 //@Disabled
-@TeleOp(name = "Glyph Lifter TeleOp Test")
+@TeleOp(name = "8K Main TeleOp")
 
-public class GlyphLifterTeleOp extends OpMode {
+public class MainTeleOp extends OpMode {
 
     private OmniDriveRobot robot = new OmniDriveRobot();
 

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.team8745;
 
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
         import com.qualcomm.robotcore.eventloop.opmode.OpMode;
         import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
         import com.qualcomm.robotcore.hardware.DcMotor;
@@ -10,6 +11,7 @@ package org.firstinspires.ftc.team8745;
 /**
  * Created by rose on 10/22/17.
  */
+@Disabled
 @TeleOp(name = "Omni Drive Function Test")
 
 public class ExperimentalFunctionTeleOp extends OpMode {
