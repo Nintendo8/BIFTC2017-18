@@ -57,8 +57,8 @@ public class OmniDriveRobot {
         servoL = hardwareMap.servo.get("Left Servo");
         servoR = hardwareMap.servo.get("Right Servo");
 
-        //jewelServo = hardwareMap.servo.get("Jewel Servo");
-        //jewelSensor = hardwareMap.colorSensor.get("Jewel Sensor");
+        jewelServo = hardwareMap.servo.get("Jewel Servo");
+        jewelSensor = hardwareMap.colorSensor.get("Jewel Sensor");
 
 
     }
