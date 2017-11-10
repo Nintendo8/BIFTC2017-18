@@ -32,6 +32,8 @@ public class OnlyParkRed extends LinearOpMode {
 
     static final double     kTimeToDrive = 1.5;
 
+    static final int        kTimeToPark = 1500;
+
     //boolean canPark = false;
 
     @Override
@@ -54,14 +56,11 @@ public class OnlyParkRed extends LinearOpMode {
 
 
         // Drive right for 1.5 seconds
-        robot.driveStrafe(kRIGHT_SPEED);
+        robot.driveStrafe(kLEFT_SPEED);
 
         elapsedTime.reset();
         //Changing value of the number elapsedTime must be greater than changes how long the robot drives forward.
-        while (opModeIsActive() && (elapsedTime.seconds() < 1.5)) {
-            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
-            telemetry.update();
-        }
+        sleep(kTimeToPark);
 
         robot.A.setPower(0);
         robot.B.setPower(0);

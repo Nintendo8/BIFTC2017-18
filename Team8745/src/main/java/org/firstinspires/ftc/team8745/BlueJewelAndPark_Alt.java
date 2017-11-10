@@ -6,12 +6,11 @@ package org.firstinspires.ftc.team8745;
 
 
 /**
- * Created by rose on 11/3/17.
+ * Created by rose on 11/4/17.
  */
+@Autonomous(name="Jewel and Park Blue")
 
-@Autonomous(name="Jewel and Park Red")
-
-public class BlueAutonomousJewelAndPark extends LinearOpMode {
+public class BlueJewelAndPark_Alt extends LinearOpMode {
 
 
     /* Declare OpMode members. */
@@ -36,10 +35,14 @@ public class BlueAutonomousJewelAndPark extends LinearOpMode {
     //Changes where the jewel servo moves to, scale of 0.0 to 1.0
     static final double     kJEWEL_TARGET = 0.5;
 
+    static final int        kJEWEL_TIME = 1000;
+
     //Changing this determines how long it drives forwards to park, in seconds.
-    static final double     kTimeToDrive = 1.5;
+    static final int     kTimeToDrive = 1500;
     //Changing this determines how long it drives to knock off the jewel, in seconds.
-    static final double     kTimeToKnockOff = 0.9;
+    static final double     kTimeToKnockOff = 1.5;
+
+    static final double     kServoTime = 1.5;
 
     //boolean canPark = false;
 
@@ -58,20 +61,20 @@ public class BlueAutonomousJewelAndPark extends LinearOpMode {
         telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
 
+        // Lowers jewelServo
+        robot.jewelServo.setPosition(kJEWEL_TARGET);
+        elapsedTime.reset();
+        while(elapsedTime.seconds()<kTimeToKnockOff){
+
+        }
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // Lowers jewelServo
-        robot.jewelServo.setPosition(kJEWEL_TARGET);
-
-        while (robot.jewelServo.getPosition()!= kJEWEL_TARGET) {
-            robot.doNothing();
-        }
-
         if (robot.jewelSensor.blue() > robot.jewelSensor.red()){
-            while (opModeIsActive() && (elapsedTime.seconds() < kTimeToKnockOff)) {
-                robot.driveStrafe(1.0);
-            }
+            elapsedTime.reset();
+            while (elapsedTime.seconds()<kServoTime){
+                robot.driveStrafe(1.0);}
+
             robot.A.setPower(0);
             robot.D.setPower(0);
 
@@ -80,9 +83,9 @@ public class BlueAutonomousJewelAndPark extends LinearOpMode {
         }
 
         if (robot.jewelSensor.red() > robot.jewelSensor.blue()){
-            while (opModeIsActive() && (elapsedTime.seconds() < kTimeToKnockOff)) {
-                robot.driveStrafe(-1.0);
-            }
+            elapsedTime.reset();
+            while (elapsedTime.seconds()<kServoTime){
+                robot.driveStrafe(-1.0);}
             robot.A.setPower(0);
             robot.D.setPower(0);
 
@@ -91,22 +94,21 @@ public class BlueAutonomousJewelAndPark extends LinearOpMode {
         }
 
         //When done
-        robot.jewelServo.setPosition(0.0);
+        /*robot.jewelServo.setPosition(0.0);
 
         while (robot.jewelServo.getPosition()!= 0.0);   {
             //Do nothing until the servo is down.
 
-        }
+        }*/
 
         // Drive to the right.
         robot.driveStrafe(kLEFT_SPEED);
-
         elapsedTime.reset();
-        //Changing value of the number elapsedTime must be greater than changes how long the robot drives forward.
-        while (opModeIsActive() && (elapsedTime.seconds() < kTimeToDrive)) {
-            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
-            telemetry.update();
+        while (elapsedTime.seconds()<kTimeToDrive) {
+
         }
+
+
 
         robot.A.setPower(0);
         robot.B.setPower(0);

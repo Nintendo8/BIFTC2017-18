@@ -6,11 +6,12 @@ package org.firstinspires.ftc.team8745;
 
 
 /**
- * Created by rose on 10/25/17.
+ * Created by rose on 11/3/17.
  */
-@Autonomous(name="Jewel and Park Red")
 
-public class RedTeam_AutonomousJewelAndPark extends LinearOpMode {
+@Autonomous(name="OLD NONFUNCTIONALJewel and Park Blue")
+
+public class OldJewel extends LinearOpMode {
 
 
     /* Declare OpMode members. */
@@ -38,7 +39,7 @@ public class RedTeam_AutonomousJewelAndPark extends LinearOpMode {
     //Changing this determines how long it drives forwards to park, in seconds.
     static final double     kTimeToDrive = 1.5;
     //Changing this determines how long it drives to knock off the jewel, in seconds.
-    static final double     kTimeToKnockOff = 0.9;
+    static final double     kTimeToKnockOff = 1.5; //Was 0.9
 
     //boolean canPark = false;
 
@@ -57,17 +58,19 @@ public class RedTeam_AutonomousJewelAndPark extends LinearOpMode {
         telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
 
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
-
         // Lowers jewelServo
         robot.jewelServo.setPosition(kJEWEL_TARGET);
 
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
+
+
+
         while (robot.jewelServo.getPosition()!= kJEWEL_TARGET) {
-            //Waits for enough time that the servo should be lowered.
+            robot.doNothing();
         }
 
-        if (robot.jewelSensor.red() > robot.jewelSensor.blue()){
+        if (robot.jewelSensor.blue() > robot.jewelSensor.red()){
             while (opModeIsActive() && (elapsedTime.seconds() < kTimeToKnockOff)) {
                 robot.driveStrafe(1.0);
             }
@@ -78,7 +81,7 @@ public class RedTeam_AutonomousJewelAndPark extends LinearOpMode {
             robot.C.setPower(0);
         }
 
-        if (robot.jewelSensor.blue() > robot.jewelSensor.red()){
+        if (robot.jewelSensor.red() > robot.jewelSensor.blue()){
             while (opModeIsActive() && (elapsedTime.seconds() < kTimeToKnockOff)) {
                 robot.driveStrafe(-1.0);
             }
@@ -98,7 +101,7 @@ public class RedTeam_AutonomousJewelAndPark extends LinearOpMode {
         }
 
         // Drive to the right.
-        robot.driveStrafe(kRIGHT_SPEED);
+        robot.driveStrafe(kLEFT_SPEED);
 
         elapsedTime.reset();
         //Changing value of the number elapsedTime must be greater than changes how long the robot drives forward.

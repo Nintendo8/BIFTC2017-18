@@ -1,28 +1,29 @@
-package org.firstinspires.ftc.team8745.Obsolete;
+package org.firstinspires.ftc.team8745;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
+        import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+        import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.team8745.OmniDriveRobot;
+        import org.firstinspires.ftc.team8745.OmniDriveRobot;
 
 
 /**
- * Created by rose on 11/3/17.
+ * Created by rose on 11/10/17.
  */
 
-//@Disabled
-@TeleOp(name = "8K Main TeleOp")
+//For testing changed constants and new mechanisms
 
-public class MainTeleOp extends OpMode {
+@TeleOp(name = "8K Servo Test")
+
+public class ModifiedMainTeleOp extends OpMode {
 
     private OmniDriveRobot robot = new OmniDriveRobot();
 
     final double kServoRightOpen = 0.0;
     final double kServoLeftOpen = 1.0;
 
-    final double kServoRightClosed = 1.0;
-    final double kServoLeftClosed = 0.0;
+    final double kServoRightClosed = 0.8;
+    final double kServoLeftClosed = 0.2;
 
 
     final double kLeftStickXDeadzone = 0.1;
@@ -90,6 +91,8 @@ public class MainTeleOp extends OpMode {
 
         float BD = Range.clip(.5f*(leftStickY-leftStickX), -1, 1); //was x+y
         float AC = Range.clip(.5f*(leftStickY+leftStickX), -1, 1); //was y-x
+
+        robot.jewelServo.setPosition(0.0);
 
         if (Math.abs(rightStickX) > kSpinDeadzone) {
             robot.A.setPower(-rightStickX);

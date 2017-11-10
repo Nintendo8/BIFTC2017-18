@@ -67,17 +67,17 @@ public class OmniDriveRobot {
      A.setPower(speed);
      D.setPower(speed);
 
-     B.setPower(speed);
-     C.setPower(speed);
+     B.setPower(-speed);
+     C.setPower(-speed);
 
     }
 
     public void driveStrafe (double speed) {
         A.setPower(speed);
-        D.setPower(-speed);
+        D.setPower(speed);
 
         B.setPower(speed);
-        C.setPower(-speed);
+        C.setPower(speed);
 
     }
 
