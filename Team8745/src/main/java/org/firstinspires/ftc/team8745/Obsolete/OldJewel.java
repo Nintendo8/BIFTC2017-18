@@ -1,14 +1,18 @@
-package org.firstinspires.ftc.team8745;
+package org.firstinspires.ftc.team8745.Obsolete;
 
         import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
         import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
         import com.qualcomm.robotcore.util.ElapsedTime;
+
+        import org.firstinspires.ftc.team8745.OmniDriveRobot;
 
 
 /**
  * Created by rose on 11/3/17.
  */
 
+@Disabled
 @Autonomous(name="OLD NONFUNCTIONALJewel and Park Blue")
 
 public class OldJewel extends LinearOpMode {

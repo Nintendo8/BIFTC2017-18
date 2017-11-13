@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team8745;
+package org.firstinspires.ftc.team8745.Obsolete;
 
         import com.qualcomm.robotcore.eventloop.opmode.Disabled;
         import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -7,6 +7,8 @@ package org.firstinspires.ftc.team8745;
         import com.qualcomm.robotcore.hardware.DcMotorSimple;
         import com.qualcomm.robotcore.hardware.HardwareMap;
         import com.qualcomm.robotcore.util.Range;
+
+        import org.firstinspires.ftc.team8745.OmniDriveRobot;
 
 /**
  * Created by rose on 10/22/17.

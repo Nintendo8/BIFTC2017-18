@@ -1,13 +1,18 @@
-package org.firstinspires.ftc.team8745;
+package org.firstinspires.ftc.team8745.Obsolete;
 
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
         import com.qualcomm.robotcore.eventloop.opmode.OpMode;
         import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+        import org.firstinspires.ftc.team8745.OmniDriveRobot;
 
 
 /**
  * Created by rose on 11/8/17.
  */
+
+//Proved that the color sensor worked before moving on with autonomous.
+@Disabled
 @TeleOp(name="Color Sensor Accuracy")
 
 public class ColorTest extends OpMode {

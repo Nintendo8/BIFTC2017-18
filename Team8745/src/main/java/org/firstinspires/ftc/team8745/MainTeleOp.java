@@ -38,12 +38,13 @@ public class MainTeleOp extends OpMode {
 
         robot.servoL.setPosition(kServoLeftOpen);
         robot.servoR.setPosition(kServoRightOpen);
-        robot.lift.setTargetPosition(0);
 
     }
 
     @Override
     public void loop() {
+
+        robot.jewelServo.setPosition(1.0);
 
         telemetry.addData("left servo",robot.servoL.getPosition());
         telemetry.addData("right servo",robot.servoR.getPosition());
@@ -90,8 +91,6 @@ public class MainTeleOp extends OpMode {
 
         float BD = Range.clip(.5f*(leftStickY-leftStickX), -1, 1); //was x+y
         float AC = Range.clip(.5f*(leftStickY+leftStickX), -1, 1); //was y-x
-
-        robot.jewelServo.setPosition(0.0);
 
         if (Math.abs(rightStickX) > kSpinDeadzone) {
             robot.A.setPower(-rightStickX);

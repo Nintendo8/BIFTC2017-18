@@ -5,6 +5,8 @@ package org.firstinspires.ftc.team8745;
         import com.qualcomm.robotcore.hardware.DcMotorSimple;
         import com.qualcomm.robotcore.hardware.HardwareMap;
         import com.qualcomm.robotcore.hardware.Servo;
+        import com.qualcomm.robotcore.hardware.configuration.MatrixConstants;
+        import com.qualcomm.robotcore.util.Range;
 
 
 /**
@@ -60,17 +62,11 @@ public class OmniDriveRobot {
         jewelServo = hardwareMap.servo.get("Jewel Servo");
         jewelSensor = hardwareMap.colorSensor.get("Jewel Sensor");
 
+        jewelServo.setPosition(1.0);
 
     }
 
-    public void driveStraight (double speed) {
-     A.setPower(speed);
-     D.setPower(speed);
 
-     B.setPower(-speed);
-     C.setPower(-speed);
-
-    }
 
     public void driveStrafe (double speed) {
         A.setPower(speed);
@@ -79,6 +75,62 @@ public class OmniDriveRobot {
         B.setPower(speed);
         C.setPower(speed);
 
+    }
+
+    //float BD = Range.clip(.5f*(leftStickY-leftStickX), -1, 1);
+    //float AC = Range.clip(.5f*(leftStickY+leftStickX), -1, 1);
+
+    // Forwards: BD = 1, AC = 1
+    // Backwards: BD = -1, AC = -1
+    // Right: BD = -1, AC = 1
+    // Left: BD = 1, AC = -1
+
+
+    public void driveForwards (double speed){
+        double motorsBD = Math.abs(speed);
+        double motorsAC = Math.abs(speed);
+
+        A.setPower(motorsAC);
+        C.setPower(motorsAC);
+        B.setPower(motorsBD);
+        D.setPower(motorsBD);
+    }
+
+    public void driveBackwards (double speed){
+        double motorsBD = Math.abs(speed)*-1;
+        double motorsAC = Math.abs(speed)*-1;
+
+        A.setPower(motorsAC);
+        C.setPower(motorsAC);
+        B.setPower(motorsBD);
+        D.setPower(motorsBD);
+    }
+
+    public void driveRight (double speed){
+        double motorsBD = Math.abs(speed)*-1;
+        double motorsAC = Math.abs(speed);
+
+        A.setPower(motorsAC);
+        C.setPower(motorsAC);
+        B.setPower(motorsBD);
+        D.setPower(motorsBD);
+    }
+
+    public void driveLeft (double speed){
+        double motorsBD = Math.abs(speed);
+        double motorsAC = Math.abs(speed)*-1;
+
+        A.setPower(motorsAC);
+        C.setPower(motorsAC);
+        B.setPower(motorsBD);
+        D.setPower(motorsBD);
+    }
+
+    public void driveStop (){
+        A.setPower(0);
+        C.setPower(0);
+        B.setPower(0);
+        D.setPower(0);
     }
 
     public void  doNothing (){
