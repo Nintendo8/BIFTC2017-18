@@ -66,8 +66,6 @@ public class OmniDriveRobot {
 
     }
 
-
-
     public void driveStrafe (double speed) {
         A.setPower(speed);
         D.setPower(speed);

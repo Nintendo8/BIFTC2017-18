@@ -99,10 +99,7 @@ public class TurnWhileMoving extends OpMode {
         float A = Range.clip(.5f*(leftStickY+leftStickX-rightStickX), -1, 1); //was y-x
         float C = Range.clip(.5f*(leftStickY+leftStickX+rightStickX), -1, 1); //was y-x
 
-
-        robot.jewelServo.setPosition(0.0);
-
-        if (Math.abs(rightStickX) > kSpinDeadzone) {
+        if (Math.abs(rightStickX) < kSpinDeadzone) {
             robot.D.setPower(BD);
             robot.B.setPower(BD);
             robot.A.setPower(AC);

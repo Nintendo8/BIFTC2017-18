@@ -46,7 +46,7 @@ public class BlueJewel extends LinearOpMode {
 
 
 
-    static final double     kParkSpeed = 1.0;
+    static final double     kParkSpeed = 0.8;
 
     //boolean canPark = false;
 
@@ -73,12 +73,13 @@ public class BlueJewel extends LinearOpMode {
         robot.jewelServo.setPosition(kJEWEL_TARGET);
         elapsedTime.reset();
         while(elapsedTime.seconds()<kJEWEL_TIME && opModeIsActive()){
-
+            sleep(1);
         }
 
         if (robot.jewelSensor.blue() > robot.jewelSensor.red()){
             elapsedTime.reset();
             while (elapsedTime.seconds()<kTimeToKnockOff && opModeIsActive()){
+                sleep(1);
                 robot.driveRight(kKnockOffSpeed);}
 
             robot.A.setPower(0);
@@ -86,9 +87,10 @@ public class BlueJewel extends LinearOpMode {
 
             robot.B.setPower(0);
             robot.C.setPower(0);
-        } else if (robot.jewelSensor.red() > robot.jewelSensor.blue()){
+        } else { //if (robot.jewelSensor.red() > robot.jewelSensor.blue())
             elapsedTime.reset();
             while (elapsedTime.seconds()<kTimeToKnockOff && opModeIsActive()){
+                sleep(1);
                 robot.driveLeft(kKnockOffSpeed);}
             robot.A.setPower(0);
             robot.D.setPower(0);
@@ -102,6 +104,7 @@ public class BlueJewel extends LinearOpMode {
         robot.jewelServo.setPosition(1.0);
         elapsedTime.reset();
         while (elapsedTime.seconds() < kJEWEL_TIME);   {
+            sleep(1);
             //Do nothing for kJEWEL_TIME seconds.
         }
 
@@ -109,11 +112,20 @@ public class BlueJewel extends LinearOpMode {
         robot.driveRight(kParkSpeed);
         elapsedTime.reset();
         while (elapsedTime.seconds()<kTimeToDrive && opModeIsActive()) {
+            sleep(1);
         }
         robot.A.setPower(0);
         robot.B.setPower(0);
         robot.C.setPower(0);
         robot.D.setPower(0);
+
+        //Updates telemetry to what the sensor sees.
+        telemetry.addData("Red",robot.jewelSensor.red());
+        telemetry.addData("Green",robot.jewelSensor.green());
+        telemetry.addData("Blue",robot.jewelSensor.blue());
+        telemetry.update();
+
+        robot.jewelServo.setPosition(1.0);
     }
 
 }

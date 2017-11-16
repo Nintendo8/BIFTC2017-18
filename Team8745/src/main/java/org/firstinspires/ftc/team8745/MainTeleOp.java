@@ -93,11 +93,11 @@ public class MainTeleOp extends OpMode {
         float AC = Range.clip(.5f*(leftStickY+leftStickX), -1, 1); //was y-x
 
         if (Math.abs(rightStickX) > kSpinDeadzone) {
-            robot.A.setPower(-rightStickX);
-            robot.D.setPower(-rightStickX);
+            robot.A.setPower(Math.pow(rightStickX, 2) * Math.signum(rightStickX) * -1);
+            robot.D.setPower(Math.pow(rightStickX, 2) * Math.signum(rightStickX) * -1);
 
-            robot.C.setPower(rightStickX);
-            robot.B.setPower(rightStickX);
+            robot.C.setPower(Math.pow(rightStickX, 2) * Math.signum(rightStickX));
+            robot.B.setPower(Math.pow(rightStickX, 2) * Math.signum(rightStickX));
         } else {
             robot.D.setPower(BD);
             robot.B.setPower(BD);

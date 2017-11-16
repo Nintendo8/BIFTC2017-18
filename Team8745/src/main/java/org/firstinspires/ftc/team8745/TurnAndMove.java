@@ -8,22 +8,21 @@ package org.firstinspires.ftc.team8745;
 
 
 /**
- * Created by rose on 11/10/17.
+ * Created by rose on 11/12/17.
  */
 
-//For testing changed constants and new mechanisms
 
-@TeleOp(name = "8K Test Program[[]")
+@TeleOp(name = "Best Controls")
 
-public class ModifiedMainTeleOp extends OpMode {
+public class TurnAndMove extends OpMode {
 
     private OmniDriveRobot robot = new OmniDriveRobot();
 
     final double kServoRightOpen = 0.0;
     final double kServoLeftOpen = 1.0;
 
-    final double kServoRightClosed = 0.8;
-    final double kServoLeftClosed = 0.2;
+    final double kServoRightClosed = 1.0;
+    final double kServoLeftClosed = 0.0;
 
 
     final double kLeftStickXDeadzone = 0.1;
@@ -39,12 +38,13 @@ public class ModifiedMainTeleOp extends OpMode {
 
         robot.servoL.setPosition(kServoLeftOpen);
         robot.servoR.setPosition(kServoRightOpen);
-        robot.lift.setTargetPosition(0);
 
     }
 
     @Override
     public void loop() {
+
+        robot.jewelServo.setPosition(1.0);
 
         telemetry.addData("left servo",robot.servoL.getPosition());
         telemetry.addData("right servo",robot.servoR.getPosition());
@@ -89,22 +89,36 @@ public class ModifiedMainTeleOp extends OpMode {
             leftStickY = 0;
         }
 
+        if (Math.abs(rightStickX) > kSpinDeadzone) {
+            robot.A.setPower(Math.pow(rightStickX, 2) * Math.signum(rightStickX) * -1);
+            robot.D.setPower(Math.pow(rightStickX, 2) * Math.signum(rightStickX) * -1);
+
+            robot.C.setPower(Math.pow(rightStickX, 2) * Math.signum(rightStickX));
+            robot.B.setPower(Math.pow(rightStickX, 2) * Math.signum(rightStickX));
+        } else {
+
+        }
+
         float BD = Range.clip(.5f*(leftStickY-leftStickX), -1, 1); //was x+y
         float AC = Range.clip(.5f*(leftStickY+leftStickX), -1, 1); //was y-x
 
-        robot.jewelServo.setPosition(0.0);
 
-        if (Math.abs(rightStickX) > kSpinDeadzone) {
-            robot.A.setPower(-rightStickX);
-            robot.D.setPower(-rightStickX);
+        float B = Range.clip(.5f*(leftStickY-leftStickX+rightStickX), -1, 1); //was x+y
+        float D = Range.clip(.5f*(leftStickY-leftStickX-rightStickX), -1, 1); //was x+y
 
-            robot.C.setPower(rightStickX);
-            robot.B.setPower(rightStickX);
-        } else {
+        float A = Range.clip(.5f*(leftStickY-leftStickX-rightStickX), -1, 1); //was x+y
+        float C = Range.clip(.5f*(leftStickY+leftStickX+rightStickX), -1, 1); //was y-x
+
+        if (Math.abs(rightStickX) < kSpinDeadzone) {
             robot.D.setPower(BD);
             robot.B.setPower(BD);
             robot.A.setPower(AC);
             robot.C.setPower(AC);
+        } else {
+            robot.D.setPower(D);
+            robot.B.setPower(B);
+            robot.A.setPower(A);
+            robot.C.setPower(C);
         }
     }
 }
