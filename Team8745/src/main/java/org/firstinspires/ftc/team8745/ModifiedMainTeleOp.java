@@ -2,9 +2,9 @@ package org.firstinspires.ftc.team8745;
 
         import com.qualcomm.robotcore.eventloop.opmode.OpMode;
         import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+        import com.qualcomm.robotcore.hardware.DcMotor;
+        import com.qualcomm.robotcore.hardware.Servo;
         import com.qualcomm.robotcore.util.Range;
-
-        import org.firstinspires.ftc.team8745.OmniDriveRobot;
 
 
 /**
@@ -13,7 +13,7 @@ package org.firstinspires.ftc.team8745;
 
 //For testing changed constants and new mechanisms
 
-@TeleOp(name = "8K Test Program[[]")
+@TeleOp(name = "8K Relic TeleOp")
 
 public class ModifiedMainTeleOp extends OpMode {
 
@@ -25,6 +25,8 @@ public class ModifiedMainTeleOp extends OpMode {
     final double kServoRightClosed = 0.8;
     final double kServoLeftClosed = 0.2;
 
+    final double kGrabberClosed = 1.0;
+    final double kGrabberOpen = 0.0;
 
     final double kLeftStickXDeadzone = 0.1;
     final double kLeftStickYDeadzone = 0;
@@ -33,9 +35,22 @@ public class ModifiedMainTeleOp extends OpMode {
 
     final double kSpinDeadzone = 0.1;
 
+    final double kFlipIn = 0.0;
+    final double kFlipOut = 1.0;
+
+    public DcMotor relicMover;
+
+    public Servo grabber;
+    public Servo flip;
+
+
     @Override
     public void init() {
         robot.init(hardwareMap);
+
+        relicMover = hardwareMap.dcMotor.get("Relic Motor");
+        grabber = hardwareMap.servo.get("Grabber Servo");
+        flip = hardwareMap.servo.get("Flipper Servo");
 
         robot.servoL.setPosition(kServoLeftOpen);
         robot.servoR.setPosition(kServoRightOpen);
@@ -52,8 +67,48 @@ public class ModifiedMainTeleOp extends OpMode {
         //Gamepad 2
         boolean gamepadA = gamepad2.a;
         boolean gamepadB = gamepad2.b;
+        boolean gamepadX = gamepad2.x;
+        boolean gamepadY = gamepad2.y;
 
         float leftStick2 = gamepad2.left_stick_y;
+        float rightStick2 = gamepad2.right_stick_y;
+
+        boolean rightBumper2 = gamepad2.right_bumper;
+        boolean leftBumper2 = gamepad2.left_bumper;
+
+
+
+        //Glyph servo positions
+        if (gamepadA && gamepadB) {
+            robot.doNothing();
+        } else if(gamepadA){
+            robot.servoL.setPosition(kServoLeftClosed);
+            robot.servoR.setPosition(kServoRightClosed);
+        } else if(gamepadB){
+            robot.servoL.setPosition(kServoLeftOpen);
+            robot.servoR.setPosition(kServoRightOpen);
+        }
+
+        //Retracts relic mechanism.
+        relicMover.setPower(-Math.abs(rightStick2));
+
+        //Relic flipper position
+        if (rightBumper2 && leftBumper2) {
+            robot.doNothing();
+        } else if(rightBumper2){
+            grabber.setPosition(kFlipOut);
+        } else if(leftBumper2){
+            grabber.setPosition(kFlipIn);
+        }
+
+        //Relic grabber position
+        if (gamepadX && gamepadY) {
+            robot.doNothing();
+        } else if(gamepadX){
+            grabber.setPosition(kGrabberClosed);
+        } else if(gamepadB){
+            grabber.setPosition(kGrabberOpen);
+        }
 
         /*Some extra stuff
         boolean dpadUp = gamepad2.dpad_up;
@@ -67,15 +122,7 @@ public class ModifiedMainTeleOp extends OpMode {
         float leftStickX = -gamepad1.left_stick_x;
         float rightStickX = gamepad1.right_stick_x;
 
-        if (gamepadA && gamepadB) {
-            robot.doNothing();
-        } else if(gamepadA){
-            robot.servoL.setPosition(kServoLeftClosed);
-            robot.servoR.setPosition(kServoRightClosed);
-        } else if(gamepadB){
-            robot.servoL.setPosition(kServoLeftOpen);
-            robot.servoR.setPosition(kServoRightOpen);
-        }
+
 
         if (Math.abs(leftStick2)>kLeftStick2Deadzone){
             robot.lift.setPower(leftStick2/2);

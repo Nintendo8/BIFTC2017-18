@@ -18,11 +18,11 @@ public class MainTeleOp extends OpMode {
 
     private OmniDriveRobot robot = new OmniDriveRobot();
 
-    final double kServoRightOpen = 0.0;
-    final double kServoLeftOpen = 1.0;
+    final double kServoRightOpen = 0.0; // was 0.0
+    final double kServoLeftOpen = 1.0; // was 1.0
 
-    final double kServoRightClosed = 1.0;
-    final double kServoLeftClosed = 0.0;
+    final double kServoRightClosed = 1.0; // was 1.0
+    final double kServoLeftClosed = 0.0; // was 0.0
 
 
     final double kLeftStickXDeadzone = 0.1;

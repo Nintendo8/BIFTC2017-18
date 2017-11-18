@@ -21,8 +21,8 @@ public class TriggerServoTeleOp extends OpMode {
     final double kServoRightOpen = 0.2;
     final double kServoLeftOpen = 1.0;
 
-    final double kServoRightClosed = 1.0;
-    final double kServoLeftClosed = 0.0;
+    final double kServoRightClosed = 0.45;
+    final double kServoLeftClosed = 0.65;
 
 
     final double kLeftStickXDeadzone = 0.1;
@@ -47,13 +47,24 @@ public class TriggerServoTeleOp extends OpMode {
         robot.jewelServo.setPosition(1.0);
 
         float rightTrigger = gamepad2.right_trigger;
-
-        robot.servoR.setPosition(kServoRightOpen+rightTrigger);
-        robot.servoL.setPosition(kServoLeftOpen-rightTrigger);
+        float leftTrigger = gamepad2.left_trigger;
 
         //Gamepad 2
         boolean gamepadA = gamepad2.a;
         boolean gamepadB = gamepad2.b;
+
+        robot.servoR.setPosition(kServoRightOpen+rightTrigger);
+        robot.servoL.setPosition(kServoLeftOpen-leftTrigger);
+
+        if (gamepadA && gamepadB) {
+            robot.doNothing();
+        } else if(gamepadA){
+            robot.servoL.setPosition(kServoLeftClosed);
+            robot.servoR.setPosition(kServoRightClosed);
+        } else if(gamepadB){
+            robot.servoL.setPosition(kServoLeftOpen);
+            robot.servoR.setPosition(kServoRightOpen);
+        }
 
         float leftStick2 = gamepad2.left_stick_y;
 
