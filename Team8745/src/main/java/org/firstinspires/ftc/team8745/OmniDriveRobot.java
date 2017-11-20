@@ -131,6 +131,22 @@ public class OmniDriveRobot {
         D.setPower(0);
     }
 
+    public void driveClockwise (double speed){
+        A.setPower(-speed);
+        D.setPower(-speed);
+
+        B.setPower(speed);
+        C.setPower(speed);
+    }
+
+    public void driveCounterclockwise (double speed){
+        A.setPower(speed);
+        D.setPower(speed);
+
+        B.setPower(-speed);
+        C.setPower(-speed);
+    }
+
     public void  doNothing (){
     }
 }
