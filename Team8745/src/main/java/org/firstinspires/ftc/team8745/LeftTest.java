@@ -47,7 +47,9 @@ public class LeftTest extends LinearOpMode {
 
         robot.driveLeft(1);
 
+        waitTime(20);
 
+        robot.driveStop();
     }
 
 }

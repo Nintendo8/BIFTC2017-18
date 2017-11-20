@@ -84,7 +84,7 @@ public class OmniDriveRobot {
     // Left: BD = 1, AC = -1
 
 
-    public void driveForwards (double speed){
+    public void driveBackwards (double speed){ // was forwards
         double motorsBD = Math.abs(speed);
         double motorsAC = Math.abs(speed);
 
@@ -94,7 +94,7 @@ public class OmniDriveRobot {
         D.setPower(motorsBD);
     }
 
-    public void driveBackwards (double speed){
+    public void driveForwards (double speed){ // was backwards
         double motorsBD = Math.abs(speed)*-1;
         double motorsAC = Math.abs(speed)*-1;
 
@@ -104,7 +104,7 @@ public class OmniDriveRobot {
         D.setPower(motorsBD);
     }
 
-    public void driveRight (double speed){
+    public void driveLeft (double speed){ // was right
         double motorsBD = Math.abs(speed)*-1;
         double motorsAC = Math.abs(speed);
 
@@ -114,7 +114,7 @@ public class OmniDriveRobot {
         D.setPower(motorsBD);
     }
 
-    public void driveLeft (double speed){
+    public void driveRight (double speed){ //was left
         double motorsBD = Math.abs(speed);
         double motorsAC = Math.abs(speed)*-1;
 

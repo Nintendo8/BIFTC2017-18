@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Created by rose on 11/10/17.
  */
-@Autonomous(name="Jewel Red Test 11/12")
+@Autonomous(name="Jewel Red")
 
 public class RedJewel extends LinearOpMode {
 
@@ -38,15 +38,17 @@ public class RedJewel extends LinearOpMode {
     static final double     kJEWEL_TIME = 2.0; // was 1.0, time to raise and lower the servo.
 
     //Changing this determines how long it drives forwards to park, in seconds.
-    static final double     kTimeToDrive = 1.5;
+    static final double     kTimeToDrive = 3.0; // was 1.5
     //Changing this determines how long it drives to knock off the jewel, in seconds.
     static final double     kTimeToKnockOff = 0.3; // was 0.3
 
-    static final double     kKnockOffSpeed = 0.3; // was 0.5
+    //Speeds
 
+    //Speed it knocks the jewel off at.
+    static final double     kKnockOffSpeed = 0.3; // was 0.3
 
-
-    static final double     kParkSpeed = 0.8;
+    //Speed it drives at to park.
+    static final double     kParkSpeed = 0.4; // was 0.8
 
     //boolean canPark = false;
 
@@ -80,7 +82,7 @@ public class RedJewel extends LinearOpMode {
             elapsedTime.reset();
             while (elapsedTime.seconds()<kTimeToKnockOff && opModeIsActive()){
                 sleep(1);
-                robot.driveRight(kKnockOffSpeed);}
+                robot.driveBackwards(kKnockOffSpeed);}
 
             robot.A.setPower(0);
             robot.D.setPower(0);
@@ -91,7 +93,7 @@ public class RedJewel extends LinearOpMode {
             elapsedTime.reset();
             while (elapsedTime.seconds()<kTimeToKnockOff && opModeIsActive()){
                 sleep(1);
-                robot.driveLeft(kKnockOffSpeed);}
+                robot.driveForwards(kKnockOffSpeed);}
             robot.A.setPower(0);
             robot.D.setPower(0);
 
@@ -108,8 +110,8 @@ public class RedJewel extends LinearOpMode {
             //Do nothing for kJEWEL_TIME seconds.
         }
 
-        // Drive to the right.
-        robot.driveLeft(kParkSpeed);
+        // Drive forwards.
+        robot.driveForwards(kParkSpeed);
         elapsedTime.reset();
         while (elapsedTime.seconds()<kTimeToDrive && opModeIsActive()) {
             sleep(1);

@@ -1,35 +1,35 @@
 package org.firstinspires.ftc.team8745;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
+        import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+        import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.team8745.OmniDriveRobot;
+        import org.firstinspires.ftc.team8745.OmniDriveRobot;
 
 
 /**
- * Created by rose on 11/3/17.
+ * Created by rose on 11/19/17.
  */
 
 
-@TeleOp(name = "Trigger Servo TeleOp")
 
-public class TriggerServoTeleOp extends OpMode {
+@TeleOp(name = "8K Servo Fix")
+
+public class ServoNewValues extends OpMode {
 
     private OmniDriveRobot robot = new OmniDriveRobot();
 
-    final double kServoRightOpen = 0.0;
-    final double kServoLeftOpen = 1.0;
+    final double kServoRightOpen = 0.2; // was 0.0
+    final double kServoLeftOpen = 1.0; // was 1.0
 
-    final double kServoRightClosed = 1.0;
-    final double kServoLeftClosed = 0.0;
+    final double kServoRightClosed = 0.45; // was 1.0
+    final double kServoLeftClosed = 0.65; // was 0.0
 
 
     final double kLeftStickXDeadzone = 0.1;
     final double kLeftStickYDeadzone = 0;
 
     final double kLeftStick2Deadzone = 0.1;
-    final double kRightStick2Deadzone = 0.1;
 
     final double kSpinDeadzone = 0.1;
 
@@ -47,28 +47,14 @@ public class TriggerServoTeleOp extends OpMode {
 
         robot.jewelServo.setPosition(1.0);
 
-        float rightTrigger = gamepad2.right_trigger;
-        float leftTrigger = gamepad2.left_trigger;
+        telemetry.addData("left servo",robot.servoL.getPosition());
+        telemetry.addData("right servo",robot.servoR.getPosition());
 
         //Gamepad 2
         boolean gamepadA = gamepad2.a;
         boolean gamepadB = gamepad2.b;
 
-        robot.servoR.setPosition(kServoRightOpen+rightTrigger);
-        robot.servoL.setPosition(kServoLeftOpen-leftTrigger);
-
-        if (gamepadA && gamepadB) {
-            robot.doNothing();
-        } else if(gamepadA){
-            robot.servoL.setPosition(kServoLeftClosed);
-            robot.servoR.setPosition(kServoRightClosed);
-        } else if(gamepadB){
-            robot.servoL.setPosition(kServoLeftOpen);
-            robot.servoR.setPosition(kServoRightOpen);
-        }
-
         float leftStick2 = gamepad2.left_stick_y;
-        float rightStick2 = gamepad2.right_stick_y;
 
         /*Some extra stuff
         boolean dpadUp = gamepad2.dpad_up;
@@ -82,13 +68,19 @@ public class TriggerServoTeleOp extends OpMode {
         float leftStickX = -gamepad1.left_stick_x;
         float rightStickX = gamepad1.right_stick_x;
 
+        if (gamepadA && gamepadB) {
+            robot.doNothing();
+        } else if(gamepadA){
+            robot.servoL.setPosition(kServoLeftClosed);
+            robot.servoR.setPosition(kServoRightClosed);
+        } else if(gamepadB){
+            robot.servoL.setPosition(kServoLeftOpen);
+            robot.servoR.setPosition(kServoRightOpen);
+        }
 
         if (Math.abs(leftStick2)>kLeftStick2Deadzone){
             robot.lift.setPower(leftStick2/2);
             telemetry.addData("Left Stick", leftStick2);
-        } else if (Math.abs(rightStick2)>kRightStick2Deadzone){
-            robot.lift.setPower(rightStick2/4);
-            telemetry.addData("Right Stick", leftStick2);
         } else {
             robot.lift.setPower(0.0);
         }
@@ -113,7 +105,5 @@ public class TriggerServoTeleOp extends OpMode {
             robot.A.setPower(AC);
             robot.C.setPower(AC);
         }
-        telemetry.addData("left servo",robot.servoL.getPosition());
-        telemetry.addData("right servo",robot.servoR.getPosition());
     }
 }
