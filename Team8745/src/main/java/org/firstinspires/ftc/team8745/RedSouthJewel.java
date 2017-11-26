@@ -8,14 +8,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Created by rose on 11/10/17.
  */
-@Autonomous(name="Jewel Red")
+@Autonomous(name="Jewel South Red")
 
-public class RedJewel extends LinearOpMode {
+public class RedSouthJewel extends LinearOpMode {
 
 
     /* Declare OpMode members. */
     OmniDriveRobot robot = new OmniDriveRobot();
     private ElapsedTime elapsedTime = new ElapsedTime();
+    private ElapsedTime waitTime = new ElapsedTime();
 
     //Speed to drive the robot forward at.
     static final double     kFORWARD_SPEED = -0.6;
@@ -35,24 +36,29 @@ public class RedJewel extends LinearOpMode {
     //Changes where the jewel servo moves to, scale of 0.0 to 1.0
     static final double     kJEWEL_TARGET = 0.0;
 
-    //Times
-
     static final double     kJEWEL_TIME = 2.0; // was 1.0, time to raise and lower the servo.
 
     //Changing this determines how long it drives forwards to park, in seconds.
-    static final double     kTimeToDrive = 2.0; // was 1.5
+    static final double     kTimeToPark = 1.5; // was 1.5
     //Changing this determines how long it drives to knock off the jewel, in seconds.
     static final double     kTimeToKnockOff = 0.3; // was 0.3
 
     //Speeds
 
     //Speed it knocks the jewel off at.
-    static final double     kKnockOffSpeed = 0.3; // was 0.3
+    static final double     kKnockOffSpeed = 0.5; // was 0.3
 
     //Speed it drives at to park.
-    static final double     kParkSpeed = 0.4; // was 0.8
+    static final double     kParkSpeed = 0.8; // was 0.8
 
     //boolean canPark = false;
+
+    public void waitTime (double seconds){
+        waitTime.reset();
+        while (waitTime.seconds()<seconds && opModeIsActive()) {
+            sleep(1);
+        }
+    }
 
     @Override
     public void runOpMode() {
@@ -60,8 +66,6 @@ public class RedJewel extends LinearOpMode {
         /*
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
-
-
          */
         robot.init(hardwareMap);
 
@@ -80,62 +84,40 @@ public class RedJewel extends LinearOpMode {
             sleep(1);
         }
 
-        if (robot.jewelSensor.blue() < robot.jewelSensor.red()){
+        if (robot.jewelSensor.red() > robot.jewelSensor.blue()){
             elapsedTime.reset();
             while (elapsedTime.seconds()<kTimeToKnockOff && opModeIsActive()){
                 sleep(1);
-                robot.driveClockwise(kKnockOffSpeed);}
+                robot.driveBackwards(kKnockOffSpeed);}
 
             robot.A.setPower(0);
             robot.D.setPower(0);
 
             robot.B.setPower(0);
             robot.C.setPower(0);
-
-            //When done
-            robot.driveStop();
-            robot.jewelServo.setPosition(1.0);
-            elapsedTime.reset();
-            while (elapsedTime.seconds() < kJEWEL_TIME);   {
-                sleep(1);
-                //Do nothing for kJEWEL_TIME seconds.
-            }
-            while (elapsedTime.seconds()<kTimeToKnockOff && opModeIsActive()){
-                sleep(1);
-                robot.driveCounterclockwise(kKnockOffSpeed);}
-        } else { //if (robot.jewelSensor.red() < robot.jewelSensor.blue())
+        } else if (robot.jewelSensor.blue() > robot.jewelSensor.red()) {
             elapsedTime.reset();
             while (elapsedTime.seconds()<kTimeToKnockOff && opModeIsActive()){
                 sleep(1);
-                robot.driveCounterclockwise(kKnockOffSpeed);}
+                robot.driveForwards(kKnockOffSpeed);}
             robot.A.setPower(0);
             robot.D.setPower(0);
 
             robot.B.setPower(0);
             robot.C.setPower(0);
-
-            //When done
-            robot.driveStop();
-            robot.jewelServo.setPosition(1.0);
-            elapsedTime.reset();
-            while (elapsedTime.seconds() < kJEWEL_TIME);   {
-                sleep(1);
-                //Do nothing for kJEWEL_TIME seconds.
-            }
-            while (elapsedTime.seconds()<kTimeToKnockOff && opModeIsActive()){
-                sleep(1);
-                robot.driveClockwise(kKnockOffSpeed);}
         }
 
         //When done
         robot.driveStop();
+        robot.jewelServo.setPosition(1.0);
+        elapsedTime.reset();
+        waitTime(kJEWEL_TIME);
 
         // Drive forwards.
         robot.driveForwards(kParkSpeed);
         elapsedTime.reset();
-        while (elapsedTime.seconds()<kTimeToDrive && opModeIsActive()) {
-            sleep(1);
-        }
+        waitTime(kTimeToPark);
+
         robot.A.setPower(0);
         robot.B.setPower(0);
         robot.C.setPower(0);

@@ -77,7 +77,6 @@ public class ModifiedMainTeleOp extends OpMode {
         boolean leftBumper2 = gamepad2.left_bumper;
 
 
-
         //Glyph servo positions
         if (gamepadA && gamepadB) {
             robot.doNothing();
@@ -90,7 +89,7 @@ public class ModifiedMainTeleOp extends OpMode {
         }
 
         //Retracts relic mechanism.
-        relicMover.setPower(-Math.abs(rightStick2));
+        relicMover.setPower(rightStick2);
 
         //Relic flipper position
         if (rightBumper2 && leftBumper2) {
