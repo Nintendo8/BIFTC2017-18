@@ -121,7 +121,7 @@ public class BlueNorthJewel
         robot.driveLeft(kParkSpeed);
         waitTime(kLeftTime);
 
-        // Drive forwards.
+        // Drive backwards.
         robot.driveBackwards(kParkSpeed);
         elapsedTime.reset();
         waitTime(kForwardsTime);
