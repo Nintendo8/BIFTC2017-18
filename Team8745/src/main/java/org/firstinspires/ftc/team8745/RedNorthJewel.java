@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.team8745;
 
         import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
         import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
         import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -8,7 +9,8 @@ package org.firstinspires.ftc.team8745;
 /**
  * Created by rose on 11/26/17.
  */
-@Autonomous(name="Jewel North Red")
+@Disabled
+@Autonomous(name="Unusable Jewel North Red")
 
 public class RedNorthJewel
         extends LinearOpMode {

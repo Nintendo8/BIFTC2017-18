@@ -2,6 +2,7 @@ package org.firstinspires.ftc.team8745;
 
         import com.qualcomm.hardware.bosch.BNO055IMU;
         import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+        import com.qualcomm.robotcore.hardware.CRServo;
         import com.qualcomm.robotcore.hardware.ColorSensor;
         import com.qualcomm.robotcore.hardware.DcMotor;
         import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -36,9 +37,11 @@ public class OmniDriveRobot {
 
     public Servo jewelServo;
 
+    public CRServo balanceLift;
+
     public ColorSensor jewelSensor;
 
-    public BNO055IMU imu;
+    //public BNO055IMU imu;
 
     public void init(HardwareMap hardwareMap) {
 
@@ -66,8 +69,12 @@ public class OmniDriveRobot {
         jewelServo = hardwareMap.servo.get("Jewel Servo");
         jewelSensor = hardwareMap.colorSensor.get("Jewel Sensor");
 
+        balanceLift = hardwareMap.crservo.get("Balance Servo");
+
         jewelServo.setPosition(1.0);
 
+
+        /*
         // Set up the parameters with which we will use our IMU. Note that integration
         // algorithm here just reports accelerations to the logcat log; it doesn't actually
         // provide positional information.
@@ -84,6 +91,7 @@ public class OmniDriveRobot {
         // and named "imu".
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
+        */
 
     }
 

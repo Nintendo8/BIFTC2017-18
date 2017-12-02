@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.team8745;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -10,7 +11,9 @@ import org.firstinspires.ftc.team8745.OmniDriveRobot;
 /**
  * Created by rose on 11/26/17.
  */
-@Autonomous(name="Jewel North Blue")
+
+@Disabled
+@Autonomous(name="Unusable Jewel North Blue")
 
 public class BlueNorthJewel
         extends LinearOpMode {

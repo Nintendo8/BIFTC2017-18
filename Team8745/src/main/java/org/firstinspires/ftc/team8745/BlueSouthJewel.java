@@ -46,7 +46,7 @@ public class BlueSouthJewel extends LinearOpMode {
     //Speeds
 
     //Speed it knocks the jewel off at.
-    static final double     kKnockOffSpeed = 0.5; // was 0.3
+    static final double     kKnockOffSpeed = 0.3; // was 0.3
 
     //Speed it drives at to park.
     static final double     kParkSpeed = 0.8; // was 0.8

@@ -12,7 +12,7 @@ import org.firstinspires.ftc.team8745.OmniDriveRobot;
  */
 
 
-@TeleOp(name = "8K Main TeleOp")
+@TeleOp(name = "Old Main TeleOp")
 
 public class MainTeleOp extends OpMode {
 
